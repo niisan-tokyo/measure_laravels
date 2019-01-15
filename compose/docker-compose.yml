@@ -5,6 +5,23 @@ services:
   swoole:
     build: swoole/
     volumes:
-      - ../:/var/www
+      - ../blog:/var/www
     ports:
       - "8080:5200"
+
+  nginx:
+    build: nginx/
+    depends_on:
+      - fpm
+    volumes:
+      - ../blog:/var/www
+      - ./nginx/sites:/etc/nginx/sites-available
+    ports:
+      - "8080:80"
+
+  fpm:
+    build: fpm/
+    expose:
+      - "9000"
+    volumes:
+      - ../blog:/var/www
