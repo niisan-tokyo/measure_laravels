@@ -6,3 +6,5 @@ services:
     build: swoole/
     volumes:
       - ../:/var/www
+    ports:
+      - "8080:5200"
