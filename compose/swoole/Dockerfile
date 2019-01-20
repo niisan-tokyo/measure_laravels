@@ -16,4 +16,6 @@ RUN apt-get update && \
 
 WORKDIR /var/www
 
+EXPOSE 5200
+
 CMD ["bash"]

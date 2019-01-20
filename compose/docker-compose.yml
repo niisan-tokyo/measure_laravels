@@ -8,16 +8,15 @@ services:
       - ../blog:/var/www
     ports:
       - "8080:5200"
+    command: php ./bin/laravels start
 
   nginx:
     build: nginx/
-    depends_on:
-      - fpm
     volumes:
       - ../blog:/var/www
-      - ./nginx/sites:/etc/nginx/sites-available
+      - ./nginx/sites:/etc/nginx/conf.d
     ports:
-      - "8080:80"
+      - "8081:81"
 
   fpm:
     build: fpm/
@@ -25,3 +24,10 @@ services:
       - "9000"
     volumes:
       - ../blog:/var/www
+
+  apache:
+    build: apache
+    volumes:
+      - ../blog:/var/www/html
+    ports:
+      - "8080:80"
