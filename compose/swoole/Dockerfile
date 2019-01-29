@@ -1,7 +1,8 @@
 FROM php:7.2
 
 RUN apt-get update && \
-    apt-get install -y git libssl-dev unzip &&\
+    apt-get install -y git libssl-dev unzip && \
+    docker-php-ext-install mysqli pdo_mysql && \
     pecl install redis && docker-php-ext-enable redis && \
     git clone https://github.com/swoole/swoole-src.git && \
     cd swoole-src && \

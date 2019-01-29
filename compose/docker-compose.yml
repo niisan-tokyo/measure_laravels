@@ -16,7 +16,7 @@ services:
       - ../blog:/var/www
       - ./nginx/sites:/etc/nginx/conf.d
     ports:
-      - "8081:81"
+      - "8080:80"
 
   fpm:
     build: fpm/
@@ -31,3 +31,11 @@ services:
       - ../blog:/var/www/html
     ports:
       - "8080:80"
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
