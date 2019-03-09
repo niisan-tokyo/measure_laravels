@@ -20,3 +20,5 @@ WORKDIR /var/www
 EXPOSE 5200
 
 CMD ["bash"]
+
+COPY blog/ /var/www/
